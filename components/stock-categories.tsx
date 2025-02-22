@@ -42,7 +42,7 @@ const TradingPage = () => {
         <div className="flex justify-between items-end">
           <div>
             <p className="text-2xl font-bold">
-              ₹{stock.price.toLocaleString()}
+              ${stock.price.toLocaleString()}
             </p>
             <div className="flex items-center gap-2 mt-1">
               <div
@@ -56,7 +56,7 @@ const TradingPage = () => {
                   <ChevronDown className="w-4 h-4" />
                 )}
                 <span className="text-sm font-medium">
-                  ₹{Math.abs(stock.change).toLocaleString()}
+                  ${Math.abs(stock.change).toLocaleString()}
                 </span>
               </div>
               <span

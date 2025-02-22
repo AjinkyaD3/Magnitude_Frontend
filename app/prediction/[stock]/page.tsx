@@ -39,7 +39,9 @@ const PredictionPage = () => {
     setError(null);
     try {
       const response = await fetch(
-        `https://magnitudebackend.onrender.com/analyze?ticker=${encodeURIComponent(stock)}`,
+        `https://magnitudebackend.onrender.com/analyze?ticker=${encodeURIComponent(
+          stock
+        )}`,
         { method: "GET", headers: { "Content-Type": "application/json" } }
       );
       if (!response.ok) {
@@ -163,16 +165,21 @@ const PredictionPage = () => {
                   Predicted Movement
                 </p>
                 <div className="flex items-center gap-2 text-2xl font-bold">
-                  {prediction.prediction.prediction.includes("UP") ? (
+                  {prediction.prediction.prediction.includes("Up") ? (
                     <ArrowUp className="w-8 h-8 text-green-600" />
-                  ) : (
+                  ) : prediction.prediction.prediction.includes("Down") ? (
                     <ArrowDown className="w-8 h-8 text-red-600" />
+                  ) : (
+                    <TrendingUp className="w-8 h-8 text-yellow-600" />
                   )}
+
                   <span
                     className={
-                      prediction.prediction.prediction.includes("UP")
+                      prediction.prediction.prediction.includes("Up")
                         ? "text-green-600"
-                        : "text-red-600"
+                        : prediction.prediction.prediction.includes("Down")
+                        ? "text-red-600"
+                        : "text-yellow-600"
                     }
                   >
                     {prediction.prediction.prediction}
@@ -219,7 +226,7 @@ const PredictionPage = () => {
                           article.sentiment_score
                         )}`}
                       >
-                        {(article.sentiment_score * 100).toFixed(1)}%
+                        {(article.sentiment_score * 100).toFixed(1)}
                       </div>
                     </div>
                   </div>

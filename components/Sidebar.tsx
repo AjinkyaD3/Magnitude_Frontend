@@ -18,9 +18,9 @@ const sidebarItems = [
   { name: "Dashboard", href: "/", icon: Home },
   { name: "Markets", href: "/markets", icon: TrendingUp },
   { name: "Watchlist", href: "/watchlist", icon: PieChart },
-  { name: "Portfolio", href: "/portfolio", icon: Briefcase },
+
   { name: "AI Insights", href: "/ai-insights", icon: BarChart2 },
-  { name: "Settings", href: "/settings", icon: Settings },
+  { name: "Comparison", href: "/comparison", icon: Briefcase },
 ];
 
 export function Sidebar() {

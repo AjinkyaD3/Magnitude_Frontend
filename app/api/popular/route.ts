@@ -42,7 +42,7 @@ export async function GET() {
       {
         category: "Day Gainer Stocks",
         description: "Discover the equities with the greatest gains today.",
-        stocks: stockData.sort((a, b) => b.changePercent - a.changePercent).slice(0, 5),
+        stocks: stockData.sort((a, b):an => b.changePercent - a.changePercent).slice(0, 5),
       },
       {
         category: "Day Loser Stocks",
