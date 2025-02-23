@@ -1,13 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  TrendingUp,
-  AlertCircle,
-  RefreshCw,
-  ChevronRight,
-  Search,
-} from "lucide-react";
+import { useState } from "react";
+import { TrendingUp, AlertCircle, RefreshCw, Search } from "lucide-react";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import TradingViewChart from "@/components/LineChart";
 
@@ -29,6 +23,7 @@ interface PredictionData {
 
 const PredictionPage = () => {
   const [stockSymbol1, setStockSymbol1] = useState("");
+  
   const [stockSymbol2, setStockSymbol2] = useState("");
   const [inputValue1, setInputValue1] = useState("");
   const [inputValue2, setInputValue2] = useState("");
