@@ -298,9 +298,23 @@ const PredictionPage = () => {
             <div className="grid md:grid-cols-2 gap-8">
               {prediction1 && (
                 <div className="bg-white rounded-xl shadow-sm p-6">
-                  <h2 className="text-xl font-semibold text-slate-800 mb-6">
-                    Recent News for {prediction1.ticker.toUpperCase()}
-                  </h2>
+                  <h2 className="text-xl font-semibold text-slate-800 mb-6 flex items-center gap-3">
+                  Recent News for {prediction1.ticker.toUpperCase()}
+  <span className="flex items-center gap-2 text-sm">
+    <span className="flex items-center gap-1">
+      <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+      <span className="text-slate-600">Negative</span>
+    </span>
+    <span className="flex items-center gap-1">
+      <span className="w-3 h-3 bg-yellow-400 rounded-full"></span>
+      <span className="text-slate-600">Neutral</span>
+    </span>
+    <span className="flex items-center gap-1">
+      <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+      <span className="text-slate-600">Positive</span>
+    </span>
+  </span>
+</h2>
                   <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2">
                     {prediction1.news.length > 0 ? (
                       prediction1.news.map((article, index) => (
@@ -343,9 +357,24 @@ const PredictionPage = () => {
 
               {prediction2 && (
                 <div className="bg-white rounded-xl shadow-sm p-6">
-                  <h2 className="text-xl font-semibold text-slate-800 mb-6">
-                    Recent News for {prediction2.ticker.toUpperCase()}
-                  </h2>
+                  
+                  <h2 className="text-xl font-semibold text-slate-800 mb-6 flex items-center gap-3">
+                  Recent News for {prediction2.ticker.toUpperCase()}
+  <span className="flex items-center gap-2 text-sm">
+    <span className="flex items-center gap-1">
+      <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+      <span className="text-slate-600">Negative</span>
+    </span>
+    <span className="flex items-center gap-1">
+      <span className="w-3 h-3 bg-yellow-400 rounded-full"></span>
+      <span className="text-slate-600">Neutral</span>
+    </span>
+    <span className="flex items-center gap-1">
+      <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+      <span className="text-slate-600">Positive</span>
+    </span>
+  </span>
+</h2>
                   <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2">
                     {prediction2.news.length > 0 ? (
                       prediction2.news.map((article, index) => (
