@@ -17,9 +17,9 @@ import {
 const sidebarItems = [
   { name: "Dashboard", href: "/", icon: Home },
   { name: "Markets", href: "/markets", icon: TrendingUp },
-  { name: "Watchlist", href: "/watchlist", icon: PieChart },
+  // { name: "Watchlist", href: "/watchlist", icon: PieChart },
 
-  { name: "AI Insights", href: "/ai-insights", icon: BarChart2 },
+  // { name: "AI Insights", href: "/ai-insights", icon: BarChart2 },
   { name: "Comparison", href: "/comparison", icon: Briefcase },
 ];
 
