@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import yahooFinance from "yahoo-finance2";
-
 export async function GET() {
   try {
     // Fetch data for different asset classes
@@ -27,7 +26,7 @@ export async function GET() {
   } catch (error) {
     console.error("Error fetching data:", error);
     return NextResponse.json(
-      { error: "Failed to fetch data", details: error.message },
+      { error: "Failed to fetch data", details: error },
       { status: 500 }
     );
   }

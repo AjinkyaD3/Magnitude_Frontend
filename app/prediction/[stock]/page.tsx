@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import TradingViewChart from "@/components/LineChart";
 import {
@@ -29,38 +29,45 @@ interface PredictionData {
 }
 
 const PredictionPage = () => {
-  const { stock } = useParams();
+  const { stock } = useParams<{ stock?: string }>(); // Explicitly typing params 
   const [prediction, setPrediction] = useState<PredictionData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchPrediction = async () => {
+  const fetchPrediction = useCallback(async () => {
+    if (!stock) {
+      setError("Stock symbol is required.");
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(null);
     try {
       const response = await fetch(
-        `https://magnitudebackend.onrender.com/analyze?ticker=${encodeURIComponent(
-          stock
-        )}`,
+        `https://magnitudebackend.onrender.com/analyze?ticker=${encodeURIComponent(stock)}`,
         { method: "GET", headers: { "Content-Type": "application/json" } }
       );
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`API Error: ${response.statusText}`);
       }
       const data: PredictionData = await response.json();
       setPrediction(data);
     } catch (error) {
-      setError("Failed to fetch prediction data. Please try again.");
-      console.error("Error fetching prediction:", error);
+      setError(`Failed to fetch data: ${error}`);
     } finally {
       setLoading(false);
     }
-  };
+  }, [stock]);
 
   useEffect(() => {
-    if (!stock) return;
+    if (!stock) {
+      setError("Stock symbol is required.");
+      setLoading(false);
+      return;
+    }
     fetchPrediction();
-  }, [stock]);
+  }, [stock, fetchPrediction]);
 
   const getSentimentColor = (score: number) => {
     if (score > 0.5) return "text-green-600 bg-green-50";

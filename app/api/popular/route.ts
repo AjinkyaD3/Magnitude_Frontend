@@ -12,20 +12,19 @@ export async function GET() {
       stockSymbols.map(async (symbol) => {
         const quote = await yahooFinance.quote(symbol);
         console.log(quote); // Debugging: Check available fields
-    
+
         return {
           symbol: quote.symbol,
           name: quote.shortName,
           price: quote.regularMarketPrice,
           change: quote.regularMarketChange,
           changePercent: quote.regularMarketChangePercent,
-          volume: quote.regularMarketVolume,
-          fiftyTwoWeekChange: quote.fiftyTwoWeekLowChange ?? 0,  // Alternative property
-          fiftyTwoWeekChangePercent: quote.fiftyTwoWeekLowChangePercent ?? 0, // Alternative property
+          volume: quote.regularMarketVolume ?? 0, // Ensure no undefined values
+          fiftyTwoWeekChange: quote.fiftyTwoWeekLowChange ?? 0,
+          fiftyTwoWeekChangePercent: quote.fiftyTwoWeekLowChangePercent ?? 0,
         };
       })
     );
-    
 
     // Categorize stock data dynamically
     const stockCategories = [
@@ -37,24 +36,23 @@ export async function GET() {
       {
         category: "Most Active Stocks",
         description: "Discover the most traded equities in the trading day.",
-        stocks: stockData.sort((a, b) => b.volume - a.volume).slice(0, 5),
+        stocks: stockData.sort((a, b) => (b.volume ?? 0) - (a.volume ?? 0)).slice(0, 5),
       },
       {
         category: "Day Gainer Stocks",
         description: "Discover the equities with the greatest gains today.",
-        stocks: stockData.sort((a, b):an => b.changePercent - a.changePercent).slice(0, 5),
+        stocks: stockData.sort((a, b) => (b.changePercent ?? 0) - (a.changePercent ?? 0)).slice(0, 5),
       },
       {
         category: "Day Loser Stocks",
         description: "Discover the equities with the greatest losses today.",
-        stocks: stockData.sort((a, b) => a.changePercent - b.changePercent).slice(0, 5),
+        stocks: stockData.sort((a, b) => (a.changePercent ?? 0) - (b.changePercent ?? 0)).slice(0, 5),
       },
       {
         category: "52-Week Gainers",
         description: "Stocks with the highest gains over the past year.",
         stocks: stockData
-          .filter((stock) => stock.fiftyTwoWeekChangePercent !== undefined)
-          .sort((a, b) => b.fiftyTwoWeekChangePercent - a.fiftyTwoWeekChangePercent)
+          .sort((a, b) => (b.fiftyTwoWeekChangePercent ?? 0) - (a.fiftyTwoWeekChangePercent ?? 0))
           .slice(0, 5),
       },
     ];

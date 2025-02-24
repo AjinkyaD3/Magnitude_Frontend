@@ -3,8 +3,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChevronUp, ChevronDown, TrendingUp } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
+interface Stock {
+  name: string;
+  price: number;
+  change: number;
+  changePercent: number;
+}
+
+interface Category {
+  category: string;
+  description: string;
+  stocks: Stock[];
+}
+
 const TradingPage = () => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -23,7 +36,7 @@ const TradingPage = () => {
     fetchStockData();
   }, []);
 
-  const StockCard = ({ stock }) => (
+  const StockCard = ({ stock }: { stock: Stock }) => (
     <Card className="min-w-[280px] hover:shadow-lg transition-all duration-200 cursor-pointer">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-start">
