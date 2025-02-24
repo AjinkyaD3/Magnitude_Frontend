@@ -162,8 +162,8 @@ export default function MarketsOverview() {
             Markets Overview
           </h1>
           <div className="flex items-center text-blue-600 hover:text-blue-700 cursor-pointer">
-            <span className="text-lg">World Indices</span>
-            <ChevronRight className="w-5 h-5" />
+            {/* <span className="text-lg">World Indices</span> */}
+            {/* <ChevronRight className="w-5 h-5" /> */}
           </div>
         </div>
 

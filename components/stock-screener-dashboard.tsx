@@ -80,18 +80,6 @@ export default function StockScreenerDashboard() {
                 Predict
               </button>
             </div>
-
-            <div className="flex items-center gap-4">
-              <button className="p-2 hover:bg-gray-100 rounded-full transition">
-                <Bell className="w-6 h-6 text-gray-600" />
-              </button>
-              <button className="p-2 hover:bg-gray-100 rounded-full transition">
-                <ShoppingCart className="w-6 h-6 text-gray-600" />
-              </button>
-              <button className="p-2 hover:bg-gray-100 rounded-full transition">
-                <Settings className="w-6 h-6 text-gray-600" />
-              </button>
-            </div>
           </div>
         </div>
 
