@@ -70,14 +70,20 @@ export default function MarketsOverview() {
       // Add mock chart data for demonstration
       const dataWithChart = Object.entries(data).reduce(
         (acc, [assetClass, indices]) => {
-          acc[assetClass] = indices.map((item) => ({
+          if (!Array.isArray(indices)) {
+            return acc; // Ensure indices is an array
+          }
+          
+          acc[assetClass as keyof typeof acc] = indices.map((item) => ({
             ...item,
             chartData: generateMockChartData(), // Add mock chart data
           }));
+      
           return acc;
         },
         {} as Record<string, MarketIndex[]>
       );
+      
 
       setMarketData(dataWithChart);
     } catch (error) {
